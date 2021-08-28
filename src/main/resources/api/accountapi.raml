@@ -1,0 +1,43 @@
+#%RAML 1.0
+title: accountapi
+version: v1
+baseUri: http://localhost:8081
+/createaccount: 
+   post:
+    body:
+      application/json:
+        example:
+           {
+                   "name": "mark",
+                   "mobileNo": "9000000004",
+                   "emailId": "mark@gmail.com"
+                  }
+    responses:
+         200:
+           body:
+              application/json:
+                example:
+                   {
+                       "statusCode": 201,
+                        "message": "Account Creted Successfuly"
+                      }
+/accountdetails:
+  get:
+    queryParameters:
+      accountId:
+        example: '1000'
+    responses:
+      200:
+        body:
+          application/json:
+/deleteaccount:
+  delete:
+    queryParameters:
+      accountId:
+        example: '1000'
+    responses:
+      200:
+        body:
+          application/json:
+               
+          

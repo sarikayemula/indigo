@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="d0714fe2-9963-45c1-9e6c-a1af32bc29fe" >
+		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${db.userName}" password="${db.password}" database="${db.schema}" />
+	</db:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="ac953ac8-f97f-4268-a9e8-d71eb35e1cbd" file="2accountapi-DEV.properties" />
+	
+   <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="71a07f15-f7ac-4f80-a054-a1536ef26a45" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="d448fc2c-93a8-4c41-b8cb-a0133441583e" file="2accountapi-DEV.properties"/>
+</mule>

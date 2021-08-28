@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="accountdeatilsFlow" doc:id="742f937d-3b5f-4321-b928-8d01e37d2855" >
+		<logger level="INFO" doc:name="Logger" doc:id="c2f371cc-7af5-41b4-ab30-afc8e75c4d9a" />
+		<db:select doc:id="62b710ea-cf82-433a-8235-adbabb3d10b6" config-ref="Database_Config" doc:name="Select" >
+			<db:sql ><![CDATA[select * from account where accountId =:accID]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	accID:attributes.queryParams.accountId
+}]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="691492aa-434f-4b59-ab50-01e27368b998" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="f81c03c3-0bb7-420a-8b65-d4e3d6ba5265" />
+	</flow>
+</mule>
